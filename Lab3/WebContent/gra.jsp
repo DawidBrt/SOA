@@ -10,7 +10,7 @@
 <%@page import="java.util.*" %>
 
 <form action="gra.jsp" method="post">
-Podaj liczbę: <input type="number" name="number">
+Podaj liczbę: <input type="number" name="number" min="1" max="100">
 <input type="submit" value="Zgaduj">
 </form>
 

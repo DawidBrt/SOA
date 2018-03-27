@@ -1,0 +1,21 @@
+<computer_parts>
+	<part id="1">
+		<name>Monitor LCD</name>
+		<price>450</price>
+	</part>
+
+	<part id="2">
+		<name>LG 191291U</name>
+		<price>500</price>
+	</part>
+
+	<part id="3">
+		<name>GTX 1080</name>
+		<price>3000</price>
+	</part>
+
+	<part id="4">
+		<name>GTX 1080ti</name>
+		<price>5000</price>
+	</part>
+</computer_parts>
