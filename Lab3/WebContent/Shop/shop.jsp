@@ -29,6 +29,5 @@
 	      	</tr>
       	</x:forEach>
       </table>
-
    </body>
 </html>

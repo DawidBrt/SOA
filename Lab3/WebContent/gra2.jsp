@@ -23,12 +23,11 @@ catch(Exception e){
 }
 
 try{
-	//System.out.println(number);
 	int yourNumber = Integer.parseInt(request.getParameter("number"));
 	tc++;
 	%>
 	<form action="gra2.jsp" method="post">
-	Podaj liczbę: <input type="number" name="number" min="1" max="100">
+	Podaj liczbę: <input type="number" name="number" min="0" max="100">
 	<input type="hidden" value="<%=number%>" name="guessNumber">
 	<input type="hidden" value="<%=tc%>" name="tryCounter">
 	<input type="submit" value="Zgaduj">
