@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ankieta</title>
+</h:head>
+<h:body>
+	 <h:form>
+        <h:panelGrid columns="2">
+            Ile jestes w stanie przeznaczyc miesiecznie na zakup ubrania?
+            <h:selectOneMenu id="selectQ1" value="#{ankieta.q1}" >
+                <f:selectItem itemValue="mniej niz 100" itemLabel="mniej niz 100 zl"/>
+                <f:selectItem itemValue="100-500" itemLabel="100-500 zl"/>
+                <f:selectItem itemValue="500-1000" itemLabel="500-1000 zl"/>
+                <f:selectItem itemValue="wiecej-1000" itemLabel="wiecej niz 1000 zl"/>
+            </h:selectOneMenu>
+            Jak czesto dokonujesz zakupu ubrania?
+            <h:selectOneMenu id="selectQ2" value="#{ankieta.q2}" >
+                <f:selectItem itemValue="codziennie" itemLabel="codziennie"/>
+                <f:selectItem itemValue="raz w tygodniu" itemLabel="raz w tygodniu"/>
+                <f:selectItem itemValue="raz w miesiacu" itemLabel="raz w miesiacu"/>
+                <f:selectItem itemValue="kilka razy w roku" itemLabel="kilka razy w roku"/>
+            </h:selectOneMenu>
+            W jakich kolorach preferujesz ubrania?
+            <h:selectOneMenu id="selectQ3" value="#{ankieta.q3}" >
+                <f:selectItem itemValue="kolorowo-jaskrawe" itemLabel="kolorowo-jaskrawe"/>
+                <f:selectItem itemValue="stonowane w szarosciach" itemLabel="stonowane w szarosciach"/>
+                <f:selectItem itemValue="w czerni i bieli" itemLabel="w czerni i bieli"/>
+                <f:selectItem itemValue="w samej czerni" itemLabel="w samej czerni"/>
+            </h:selectOneMenu>
+            Jakiego rodzaju ubrania najchetniej kupujesz?
+            <h:selectManyCheckbox id="selectQ4" value="#{ankieta.q4}" rendered="#{ankieta.plec.equals('m')}">
+                <f:selectItems value="#{ankieta.q4ans_male}"/>
+            </h:selectManyCheckbox>
+            <h:selectManyCheckbox id="selectQ41" value="#{ankieta.q4}" rendered="#{ankieta.plec.equals('f')}">
+                <f:selectItems value="#{ankieta.q4ans_female}"/>
+            </h:selectManyCheckbox>
+            <h:outputText value="Kiedy ostatnio robiles u nas zakupy:" rendered="#{ankieta.plec.equals('m')}"/>
+            <h:outputText value="Kiedy ostatnio robilas u nas zakupy:" rendered="#{ankieta.plec.equals('f')}"/>
+            <h:selectOneMenu id="selectQ5" value="#{ankieta.q5}">
+                <f:selectItem itemValue="wczoraj" itemLabel="wczoraj"/>
+                <f:selectItem itemValue="tydzien" itemLabel="w zeszlym tygodniu"/>
+                <f:selectItem itemValue="mieisac" itemLabel="w zeszlym miesiacu"/>
+                <f:selectItem itemValue="wiecej-miesiac" itemLabel="kilka miesiecy temu"/>
+                <f:selectItem itemValue="np" itemLabel="nie pamietam"/>
+            </h:selectOneMenu>
+            <h:outputText value="Czy jestes zadowolony z naszych pracownikow: " rendered="#{ankieta.plec.equals('m')}"/>
+            <h:outputText value="Czy jestes zadowolona z naszych pracownikow: " rendered="#{ankieta.plec.equals('f')}"/>
+            <h:selectOneMenu id="selectQ6" value="#{ankieta.q6}">
+                <f:selectItem itemValue="tak" itemLabel="tak"/>
+                <f:selectItem itemValue="raczej tak" itemLabel="raczej tak"/>
+                <f:selectItem itemValue="raczej nie" itemLabel="raczej nie"/>
+                <f:selectItem itemValue="nie" itemLabel="nie"/>
+                <f:selectItem itemValue="nie wiem" itemLabel="nie wiem"/>
+            </h:selectOneMenu>
+            <h:outputText value="Czy jestes zadowolony z zakupu: " rendered="#{ankieta.plec.equals('m')}"/>
+            <h:outputText value="Czy jestes zadowolona z zakupu: " rendered="#{ankieta.plec.equals('f')}"/>
+            <h:selectOneMenu id="selectQ7" value="#{ankieta.q7}">
+                <f:selectItem itemValue="tak" itemLabel="tak"/>
+                <f:selectItem itemValue="raczej tak" itemLabel="raczej tak"/>
+                <f:selectItem itemValue="raczej nie" itemLabel="raczej nie"/>
+                <f:selectItem itemValue="nie" itemLabel="nie"/>
+                <f:selectItem itemValue="nie wiem" itemLabel="nie wiem"/>
+            </h:selectOneMenu>
+            Dodatkowe uwagi:
+            <h:inputTextarea id="inputQ8" value="#{ankieta.q8}"/>
+        </h:panelGrid>
+        <h:commandButton id="submitButton" value="Wyslij" type="submit" action="index4-3"/>
+</h:form>
+<c:set value="#{reklama.imgPath}" target="#{reklamaSession}" property="path" />
+    <h:graphicImage value="#{reklamaSession.path}" width="200px">
+        <f:ajax event="click" listener="#{reklama.onClick(reklamaSession.path)}"/>
+</h:graphicImage>
+</h:body>
+</html>

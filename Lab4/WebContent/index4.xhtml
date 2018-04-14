@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ankieta</title>
+</h:head>
+<h:body>
+<h:form>
+<h:panelGrid columns="2">
+Imie:<h:inputText id="name" value="#{ankieta.imie}">
+	<f:ajax render="send"/>
+	</h:inputText>
+
+<br/>
+E-mail:<h:inputText id="mail" value="#{ankieta.email}">
+	<f:ajax render="send"/>
+	</h:inputText>
+<br/>
+Wiek:
+	<h:selectOneMenu id="age" value="#{ankieta.wiek}">
+		<f:selectItems value="#{ankieta.getAges()}"/>
+	</h:selectOneMenu> <br/>
+Plec:
+	<h:selectOneRadio id="sex" value="#{ankieta.plec}">
+		<f:selectItem itemValue="m" itemLabel="Mezczyzna"/>
+		<f:selectItem itemValue="f" itemLabel="Kobieta"/>
+		<f:ajax render="sex"/>
+		<f:ajax render="wzrost"/>
+		<f:ajax render="send"/>
+		<f:ajax render="miseczka"/>
+		<f:ajax render="talia"/>
+		<f:ajax render="biodro"/>
+		<f:ajax render="noga"/>
+		<f:ajax render="klata"/>
+		<f:ajax render="pas"/>
+		<f:ajax render="@form"/>
+	</h:selectOneRadio>
+	<br/>
+Wyksztalcenie:
+	<h:selectOneMenu value="#{ankieta.poziom}">
+		<f:selectItem itemValue="podstawowe" itemLabel="Podstawowe"/>
+		<f:selectItem itemValue="srednie" itemLabel="Srednie"/>
+		<f:selectItem itemValue="wyzsze" itemLabel="Wyzsze"/>
+	</h:selectOneMenu>
+	<br/>
+Wzorst:
+	<h:selectOneMenu id="wzrost" value="#{ankieta.wzrost}">
+		<f:selectItems value="#{ankieta.getHigh()}"/>
+	</h:selectOneMenu>
+	<h:outputText value="Rozmiar miseczki:" rendered="#{ankieta.plec.equals('f')}" />
+	<h:inputText id="miseczka" value="#{ankieta.miseczka}" rendered="#{ankieta.plec.equals('f')}"/>
+	<h:outputText value="Obwod w talii:" rendered="#{ankieta.plec.equals('f')}" />
+	<h:inputText id="talia" value="#{ankieta.talia}" rendered="#{ankieta.plec.equals('f')}"/>
+	<h:outputText value="Rozmiar biodra:" rendered="#{ankieta.plec.equals('f')}" />
+	<h:inputText id="biodro" value="#{ankieta.biodro}" rendered="#{ankieta.plec.equals('f')}"/>
+	<h:outputText value="Dlugosc nogi:" rendered="#{ankieta.plec.equals('f')}" />
+	<h:inputText id="noga" value="#{ankieta.noga}" rendered="#{ankieta.plec.equals('f')}"/>
+
+
+	<h:outputText value="Obwod klatki:" rendered="#{ankieta.plec.equals('m')}" />
+    <h:inputText id="klata" value="#{ankieta.klata}" rendered="#{ankieta.plec.equals('m')}"/>
+   	<h:outputText value="Obwod w pasie:" rendered="#{ankieta.plec.equals('m')}" />
+    <h:inputText id="pas" value="#{ankieta.pas}" rendered="#{ankieta.plec.equals('m')}"/>
+    <h:outputText value="Długosc nogi:" rendered="#{ankieta.plec.equals('m')}" />
+	<h:inputText id="nogi" value="#{ankieta.noga}" rendered="#{ankieta.plec.equals('m')}"/>
+	
+</h:panelGrid>
+<h:commandButton id="send" disabled="#{ankieta.isOneAble()}" value="Wyslij" action="index4-2">
+</h:commandButton>
+</h:form>
+<c:set value="#{reklama.imgPath}" target="#{reklamaSession}" property="path" />
+    <h:graphicImage value="#{reklamaSession.path}" width="200px">
+        <f:ajax event="click" listener="#{reklama.onClick(reklamaSession.path)}"/>
+</h:graphicImage>
+</h:body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ice="http://xmlns.jcp.org/jsf/html"
+
+>
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Komis</title>
+</h:head>
+<h:body>
+	<h:form>
+	Samochód:
+		<h:selectOneMenu id="brand" value="#{car.brand}">
+			<f:selectItem itemValue="-1" itemLabel="-"/>
+			<f:selectItems value="#{car.brands}"/>
+			<f:ajax render="brand"/>
+	   		<f:ajax render="model"/>
+	   		<f:ajax render="send"/>
+	   </h:selectOneMenu>
+	   <h:selectOneMenu id="model" value="#{car.model}">
+	   		<f:selectItem itemValue="-1" itemLabel="-"/>
+	   		<f:selectItems value="#{car.models}"/>
+	   		<f:ajax render="model"/>
+	   		<f:ajax render="send"/>
+	   </h:selectOneMenu>
+	   <br/>
+	   Cena:
+	   <h:selectOneMenu id="minCost"  value="#{car.costMin}">
+	   		<f:selectItem itemValue="-1" itemLabel="-"/>
+	   		<f:selectItems value="#{car.costsMin()}"/>
+	   		<f:ajax render="maxCost"/>
+	   </h:selectOneMenu>
+	   <h:selectOneMenu id="maxCost"  value="#{car.costMax}">
+	   		<f:selectItem itemValue="-1" itemLabel="-"/>
+	   		<f:selectItems value="#{car.costsMax()}"/>
+	   		<f:ajax render="minCost"/>
+	   </h:selectOneMenu>
+	   <br/>
+	   Silnik:
+	   <h:selectOneMenu id="fuel" value="#{car.fuel}">
+	   		<f:selectItem itemValue="-1" itemLabel="-"/>
+	   		<f:selectItem itemValue="0" itemLabel="Diesel"/>
+	   		<f:selectItem itemValue="1" itemLabel="Benzyna"/>
+	   		<f:ajax render="fuel"/>
+	   </h:selectOneMenu>
+	   <br/>
+	   Imie:
+	   <h:inputText id="name" value="#{car.name}">
+	   		<f:ajax render="send"/>
+	   </h:inputText>
+	   <br/>
+	   Numer:
+	   <h:inputText id="nr" value="#{car.number}">
+	   		<f:ajax render="send"/>
+	   </h:inputText>
+	   <br/>
+	   
+	   <h:commandButton id="send" disabled="#{car.isAble()}" value="Wyślij" action="#{car.send}">
+	   		<f:ajax render="wynik"/>	   
+	   </h:commandButton>
+	   
+	   <h:commandButton id="clear" value="Wyczyść" action="#{car.clear()}">
+	   		<!--<f:ajax render="brand"/>
+	   		<f:ajax render="model"/>
+	   		<f:ajax render="minCost"/>
+	   		<f:ajax render="maxCost"/>
+	   		<f:ajax render="fuel"/>
+	   		<f:ajax render="name"/>
+	   		<f:ajax render="nr"/>
+	   		<f:ajax render="send"/>-->
+	   </h:commandButton>
+	   
+	   <br/>
+	   <h:outputText id="wynik" value="#{car.sell()}"/>
+	   
+	 
+	   
+   </h:form>
+</h:body>
+</html>
